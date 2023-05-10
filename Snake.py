@@ -30,6 +30,9 @@ if color1 != color2:
         color2 = 'yellow'
     if color2 == 5:
         color2 = 'pink'
+else:
+    color1 = "black"
+    color2 = "blue"
 
 
 
