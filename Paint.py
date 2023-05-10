@@ -6,7 +6,6 @@ Exercises
 2. Complete circle.
 3. Complete rectangle.
 4. Complete triangle.
-5. Add width parameter.
 """
 from turtle import *
 
