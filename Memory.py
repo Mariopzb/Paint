@@ -3,10 +3,17 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = ["\u267f", "\u260e", "\100", "\u262f", "\u2718", 
+         "\u2605", "\u2603","\u0bf9", "\u2702", "\u2716",
+         "\u20b1", "\u266c", "\uffe6", "\u273f", "\u2601", 
+         "\u2744", "\u2728", "\u0e3f", "\u20b7", "\u2654", 
+         "\u2655", "\u2656", "\u2657", "\u2658", "\u2659", 
+         "\u265a", "\u265b", "\u265c", "\u265d", "\u265e", 
+         "\u265f", "\u26bd"] * 2
 state = {'mark': None}
 hide = [True] * 64
 taps = {"number_taps": 0}
+writer = Turtle(visible=False)
 
 def square(x, y):
     "Draw white square with black outline at (x, y)."
@@ -58,6 +65,10 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
+        """if tiles[mark] >= 10:
+            goto(x + 3, y)
+        else:
+            goto(x + 5,y)"""
         goto(x + 2, y)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
