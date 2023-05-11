@@ -88,19 +88,19 @@ def world():
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
 
-def move():
+def move():     #Se define como se mueve el pacman y los fantasmas
     "Move pacman and all ghosts."
     writer.undo()
     writer.write(state['score'])
 
     clear()
 
-    if valid(pacman + aim):
+    if valid(pacman + aim):     #Revisa si el pacman se puede mover en la direccion a la que esta viendo
         pacman.move(aim)
 
     index = offset(pacman)
 
-    if tiles[index] == 1:
+    if tiles[index] == 1:       #Revisa si el pacman a obtenido un punto
         tiles[index] = 2
         state['score'] += 1
         x = (index % 20) * 20 - 200
@@ -111,16 +111,63 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
-    for point, course in ghosts:
-        if valid(point + course):
+    for point, course in ghosts:        #Se encarga del movimiento de los fanatsmas
+        if valid(point + course):       #Evita que los fantasmas colisionen con las paredes
             point.move(course)
-        else:
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
+        else:                           #Al quedarse sin camino empezara a correr esta parte 
+            #Los fantasmas seran un poco mas inteligentes, estos trataran de acercarse al pacman para hacerlo mas dificil
+            if pacman.x > point.x and pacman.y > point.y:
+                options = [
+                vector(10, 0),
+                vector(10, 0),
+                vector(10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, 10),
+                vector(0, 10),
+                vector(0, -10),
             ]
+            elif pacman.x < point.x and pacman.y > point.y:
+                options = [
+                vector(10, 0),
+                vector(-10, 0),
+                vector(-10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, 10),
+                vector(0, 10),
+                vector(0, -10),
+            ]
+            elif pacman.x > point.x and pacman.y < point.y:
+                options = [
+                vector(10, 0),
+                vector(10, 0),
+                vector(10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
+                vector(0, -10),
+                vector(0, -10),
+            ]
+            elif pacman.x < point.x and pacman.y < point.y:
+                options = [
+                vector(10, 0),
+                vector(-10, 0),
+                vector(-10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
+                vector(0, -10),
+                vector(0, -10),
+            ]
+            else:
+                options = [         #Este else es en caso de que se encuentren en un punto en comun, dar oportunidad al jugador de no ser perseguido
+                vector(10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
+                ]
+
             plan = choice(options)
             course.x = plan.x
             course.y = plan.y
@@ -135,7 +182,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+    ontimer(move, 30)
 
 def change(x, y):
     "Change pacman aim if valid."
