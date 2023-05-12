@@ -19,11 +19,11 @@ En cada uno de los archivos está el historial con todos los commits hechos por 
 **En el repositorio “Videojuegos”  creamos 5 archivos .py para cada uno de los juegos con el Código de Referencia tomado del sitio Grant Jenk http://www.grantjenks.com/docs/freegames** 
 
 Los 5 juegos que fueron modificados fueron:
-1. Paint.       http://www.grantjenks.com/docs/freegames/paint.html
-2. Snake      http://www.grantjenks.com/docs/freegames/snake.html
-3. Pacman   http://www.grantjenks.com/docs/freegames/pacman.html
-4. Cannon    http://www.grantjenks.com/docs/freegames/cannon.html
-5. Memory   http://www.grantjenks.com/docs/freegames/memory.html
+1. Paint.       http://www.grantjenks.com/docs/freegames/paint.html 🖌️
+2. Snake      http://www.grantjenks.com/docs/freegames/snake.html 🐍
+3. Pacman   http://www.grantjenks.com/docs/freegames/pacman.html 👻
+4. Cannon    http://www.grantjenks.com/docs/freegames/cannon.html 🔫
+5. Memory   http://www.grantjenks.com/docs/freegames/memory.html 📇
 
 
 <h2> Los requisitos para poder jugar estos juegos, así como realizar modificaciones son: </h2>
