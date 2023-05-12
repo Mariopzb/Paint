@@ -11,9 +11,7 @@ targets = []
 
 def tap(x, y):
     "Respond to screen tap."
-    #La función "tap" tiene de entrada las coordenadas "x" y "y"; que delimitan el espacio del juego en donde estará el proyectil
-    #utiliza un ciclo if not para identificar cuando no esté el proyectily poder dar click o "tap" para poder lanzar el proyectil,
-    #además se determina la velocidad del proyectil.
+    #Delimita el espacio del juego en donde estará el proyectil; además, determina la velocidad del proyectil.
     if not inside(ball):
         ball.x = -199
         ball.y = -199
@@ -21,23 +19,22 @@ def tap(x, y):
         speed.y = (y + 200) / 20
 
 def inside(xy):
-    #La función "inside" recibe como entradas a las coordenadas "x" y "y"; nos va a delimitan el espacio del juego
-    #y saber si las coordenadas "x" y "y están dentro del límite. 
+    #Delimita el espacio del juego. 
     "Return True if xy within screen."
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 def draw():
     "Draw ball and targets."
-    #La función draw va a dibujar puntos de dos dimensiones y colores distintintos, además loa va a posicionar en lugares específicos.
+    #Dibuja puntos de dos dimensiones y colores distintintos; los posiciona en lugares específicos.
     clear()
 
     for target in targets:
-        "For para los balones, creará círculos de tamaño 20 y color azul."
+        "For para los balones, crea círculos de tamaño 20 y color azul."
         goto(target.x, target.y)
         dot(20, 'blue')
 
     if inside(ball):
-        "If para el proyectil, creará círculos de tamaño 6 y color rojo."
+        "If para el proyectil, crea círculos de tamaño 6 y color rojo."
         goto(ball.x, ball.y)
         dot(6, 'red')
 
@@ -45,7 +42,7 @@ def draw():
 
 def move():
     """Move ball and targets."""
-    #La función "move" determinará la posición y dirección de movimiento tanto del proyectil como de los balones.
+    #Determina la posición y dirección de movimiento tanto del proyectil como de los balones.
     "Balones"
     if len(targets) < max_targets:
         #Genera un nuevo balón en una posición aleatoria.
@@ -64,7 +61,7 @@ def move():
             targets.append(target)
     "Proyectil"
     if inside(ball):
-       #Indicará la velocidad a la que se moverá en el eje "y" el proyectil.
+       #Indica la velocidad a la que se moverá en el eje "y" el proyectil.
         speed.y -= 0.35
         ball.move(speed)
 
@@ -72,7 +69,7 @@ def move():
     targets.clear()
 
     for target in dupe:
-        #For "target" va a determinar la cantidad de balones que van a ir saliendo en el juego. 
+        #Indica la cantidad de balones que van a ir saliendo en el juego. 
         if abs(target - ball) > 13:
             targets.append(target)
 
