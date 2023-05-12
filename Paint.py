@@ -57,16 +57,12 @@ def rectangle(start, end, color):
     up()
     goto(start.x, start.y)
     down()
-    color(color)
     begin_fill()
 
-    width = end.x - start.x
-    height = end.y - start.y
-
     for count in range(2):
-        forward(width)
+        forward(end.x - start.x)
         left(90)
-        forward(height)
+        forward(end.y - start.y)
         left(90)
 
     end_fill()
