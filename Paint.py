@@ -69,16 +69,15 @@ def rectangle(start, end, color):
     
 
 def triangle(start, end, color):
-    """Dibuja un triangulo"""
+    """Dibuja un triangulo, con la misma funcion del cuadrado solo cambia el angulo"""
     up()
     goto(start.x, start.y)
     down()
-    color(color)
     begin_fill()
 
-    goto(end.x, end.y)
-    goto(start.x + (end.x - start.x) / 2, start.y + (end.y - start.y))
-    goto(start.x, start.y)
+    for count in range(2):
+        forward(end.x - start.x)
+        left(60)
 
     end_fill()
 
