@@ -43,14 +43,14 @@ def circle(start, end, color):
     up()
     goto(start.x, start.y)
     down()
-    color(color)
     begin_fill()
 
-    radius = (end - start).mag()
-    circle(radius)
+    for count in range(360):
+        forward(2)
+        left(1)
 
     end_fill()
-
+    
 def rectangle(start, end, color):
     """Es la misma que la del cuadrado solo que a esta se le agregan 2 medidas
       para obtener el alto y ancho"""
