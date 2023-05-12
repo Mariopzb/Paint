@@ -10,7 +10,6 @@ speed = vector(0, 0)
 targets = []
 
 def tap(x, y):
-    "Respond to screen tap."
     #Delimita el espacio del juego en donde estará el proyectil; además, determina la velocidad del proyectil.
     if not inside(ball):
         ball.x = -199
@@ -20,30 +19,27 @@ def tap(x, y):
 
 def inside(xy):
     #Delimita el espacio del juego. 
-    "Return True if xy within screen."
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 def draw():
-    "Draw ball and targets."
     #Dibuja puntos de dos dimensiones y colores distintintos; los posiciona en lugares específicos.
     clear()
 
     for target in targets:
-        "For para los balones, crea círculos de tamaño 20 y color azul."
+        #Crea círculos de tamaño 20 y color azul para los balones."
         goto(target.x, target.y)
         dot(20, 'blue')
 
     if inside(ball):
-        "If para el proyectil, crea círculos de tamaño 6 y color rojo."
+        #Crea círculos de tamaño 6 y color rojo para el proyectil."
         goto(ball.x, ball.y)
         dot(6, 'red')
 
     update()
 
 def move():
-    """Move ball and targets."""
     #Determina la posición y dirección de movimiento tanto del proyectil como de los balones.
-    "Balones"
+    #Balones
     if len(targets) < max_targets:
         #Genera un nuevo balón en una posición aleatoria.
         y = randrange(-150, 150)
@@ -59,7 +55,7 @@ def move():
             target.x = 200
             target.y = y
             targets.append(target)
-    "Proyectil"
+    #Proyectil
     if inside(ball):
        #Indica la velocidad a la que se moverá en el eje "y" el proyectil.
         speed.y -= 0.35
