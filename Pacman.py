@@ -13,6 +13,7 @@ ghosts = [
     [vector(100, 160), vector(0, -5)],
     [vector(100, -160), vector(-5, 0)],
 ]
+#Crea una matriz de 20x20, en la que los 0 son areas en negro donde no se puede avanzar y los 1 son casillas donde si.
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -37,7 +38,7 @@ tiles = [
 ]
 
 def square(x, y):
-    "Draw square using path at (x, y)."
+    "Se dibuja un cuadrado que sera el tablero del juego dadas por las coordenadas x, y"
     path.up()
     path.goto(x, y)
     path.down()
@@ -50,14 +51,15 @@ def square(x, y):
     path.end_fill()
 
 def offset(point):
-    "Return offset of point in tiles."
+    "El argumento pedido por la funcion es point, calcula el indice de un punto en nuestra cuadricula de 20x20"
     x = (floor(point.x, 20) + 200) / 20
     y = (180 - floor(point.y, 20)) / 20
     index = int(x + y * 20)
     return index
 
+#En esta funcion se verifica que la posicion de los fantasmas y el pacman sea valida
 def valid(point):
-    "Return True if point is valid in tiles."
+    
     index = offset(point)
 
     if tiles[index] == 0:
@@ -70,8 +72,8 @@ def valid(point):
 
     return point.x % 20 == 0 or point.y % 20 == 0
 
+#En esta funcion se dibuja el mapa del mundo y cada cuadro en el, si este cuadro es igual a 1 entonces tendra un punto dentro
 def world():
-    "Draw world using path."
     bgcolor('black')
     path.color('blue')
 
@@ -111,7 +113,7 @@ def move():     #Se define como se mueve el pacman y los fantasmas
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
-    for point, course in ghosts:        #Se encarga del movimiento de los fanatsmas
+    for point, course in ghosts:        #Se encarga del movimiento de los fantasmas
         if valid(point + course):       #Evita que los fantasmas colisionen con las paredes
             point.move(course)
         else:                           #Al quedarse sin camino empezara a correr esta parte 
@@ -184,8 +186,8 @@ def move():     #Se define como se mueve el pacman y los fantasmas
 
     ontimer(move, 30)
 
+    #Actualiza la dirección en la que se mueve el pacman. Buscando si la direccion es valida
 def change(x, y):
-    "Change pacman aim if valid."
     if valid(pacman + vector(x, y)):
         aim.x = x
         aim.y = y
