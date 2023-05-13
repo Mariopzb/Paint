@@ -8,6 +8,8 @@
 <h4>Sandra Paulina Herrera Rebolledo A01798452</h4>
 
 <br> <br>
+<h3> Link para el video de los juegos: https://youtu.be/K2w2FrweskE </h3>
+<br><br>
 
 Para utilizar el repositorio realizamos lo siguiente:
 1. Creamos una cuenta en la plataforma Github.
